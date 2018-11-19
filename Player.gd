@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 # Exports go here
 
+export (PackedScene) var BULLET
 
 # Consts go here
 ## physics
@@ -28,6 +29,7 @@ var on_floor
 var on_wall
 var on_ceiling
 
+var faceing_right = true
 var movement = Vector2()
 var speed = 0
 
@@ -54,6 +56,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_right"):
 		speed += ACCEL
+		faceing_right = true
 	elif speed > DECEL:
 		speed -= DECEL
 	elif !Input.is_action_pressed("ui_left"):
@@ -61,6 +64,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_left"):
 		speed -= ACCEL
+		faceing_right = false
 	elif speed < -DECEL:
 		speed += DECEL
 	elif !Input.is_action_pressed("ui_right"):
@@ -71,11 +75,28 @@ func _physics_process(delta):
 	elif speed < -MAX_MOVEMENT_SPEED:
 		speed = -MAX_MOVEMENT_SPEED
 	
-	print(on_floor)
 	if on_floor and Input.is_action_just_pressed("ui_up"):
 		movement.y -= MAX_JUMP_SPEED
 	
 	movement.x = speed
 	
 	move_and_slide(movement, UP)
+	
+	if Input.is_action_just_pressed("ui_shoot"):
+		shoot()
+
+
+func shoot():
+	var dist = 40
+	var poz = position
+	var rot = 0
+	
+	if !faceing_right:
+		dist = -dist
+		rot = PI
+	poz.x += dist
+	
+	var bullet = BULLET.instance()
+	get_parent().add_child(bullet)
+	bullet.setup(poz, rot)
 	
