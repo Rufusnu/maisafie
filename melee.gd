@@ -15,8 +15,9 @@ func _ready():
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
-func setup(poz):
-	position = poz
+func setup(dist, faceing_right):
+	#user faceing_right to determine if you need to flip the animation
+	position.x += dist
 	
 
 func _on_Timer_timeout():

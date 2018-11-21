@@ -31,7 +31,7 @@ autostart = true
 
 modulate = Color( 1, 1, 1, 0.182314 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 

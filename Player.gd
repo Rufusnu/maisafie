@@ -11,7 +11,7 @@ const UP = Vector2(-1, 0)
 
 const GRAVITY = 15
 const MAX_MOVEMENT_SPEED = 200
-const MAX_FALL_SPEED = 250
+const MAX_FALL_SPEED = 400
 const MAX_JUMP_SPEED = 400
 
 ## player
@@ -103,14 +103,12 @@ func shoot():
 	bullet.setup(poz, rot)
 	
 func melee():
-	var poz = position
 	var dist = 20
 	if !faceing_right:
 		dist = -dist
-	poz.x += dist
 	
 	var melee = MELEE.instance()
-	get_parent().add_child(melee)
-	melee.setup(poz)
-	print("Melee")
+	
+	add_child(melee)
+	melee.setup(dist, faceing_right)
 	
