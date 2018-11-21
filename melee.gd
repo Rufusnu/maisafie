@@ -12,15 +12,12 @@ func _ready():
 	# Initialization here
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-func setup(dist, faceing_right):
-	if !faceing_right:
+func setup(dist, facing_right):
+	#user facing_right to determine if you need to flip the animation
+	if !facing_right:
 		knock = -knock
-	#user faceing_right to determine if you need to flip the animation
 	position.x += dist
+	$Sprite.flip_h=!facing_right
 	
 
 func _on_Timer_timeout():
