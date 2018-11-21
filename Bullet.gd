@@ -12,8 +12,8 @@ func _physics_process(delta):
 	var body = move_and_collide(Vector2(SPEED, 0).rotated(rotation) * delta) 
 	
 	if body:
-		if body.has_method("take_damage"):
-			body.take_damage(DAMAGE)
+		if body.collider.has_method("take_damage"):
+			body.collider.take_damage(DAMAGE)
 		die()
 
 func setup(poz, rot):

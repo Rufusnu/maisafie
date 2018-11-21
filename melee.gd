@@ -25,5 +25,6 @@ func _on_Timer_timeout():
 
 
 func _on_melee_body_entered(body):
-	if body.has_method("take_damege"):
+	#print("Zing")
+	if body.name != "Player" and body.has_method("take_damage"):
 		body.take_damage(DAMAGE)
