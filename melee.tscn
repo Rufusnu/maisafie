@@ -45,13 +45,12 @@ DAMAGE = 10
 [node name="Timer" type="Timer" parent="." index="0"]
 
 process_mode = 1
-wait_time = 0.09
+wait_time = 0.72
 one_shot = false
 autostart = true
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-modulate = Color( 1, 1, 1, 0.182314 )
 texture = ExtResource( 2 )
 vframes = 3
 hframes = 3
