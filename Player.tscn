@@ -23,6 +23,7 @@ __meta__ = {
 }
 BULLET = ExtResource( 2 )
 MELEE = ExtResource( 3 )
+faceing_right = true
 
 [node name="hit_box" type="CollisionShape2D" parent="." index="0"]
 

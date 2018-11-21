@@ -11,6 +11,7 @@
 position = Vector2( 353.648, 141.274 )
 z_index = 1
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+faceing_right = true
 
 [node name="Map" type="TileMap" parent="." index="1"]
 
