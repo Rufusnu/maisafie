@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://tileset.tres" type="TileSet" id=2]
 
 [node name="World" type="Node2D"]
 
@@ -11,12 +10,11 @@
 position = Vector2( 383.576, 263.708 )
 z_index = 1
 _sections_unfolded = [ "Collision", "Z Index" ]
-BULLET = ExtResource( 2 )
 
 [node name="Map" type="TileMap" parent="." index="1"]
 
 mode = 0
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )

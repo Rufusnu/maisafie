@@ -3,6 +3,7 @@ extends KinematicBody2D
 # Exports go here
 
 export (PackedScene) var BULLET
+export (PackedScene) var MELEE
 
 # Consts go here
 ## physics
@@ -82,6 +83,9 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("ui_shoot"):
 		shoot()
+	
+	if Input.is_action_just_pressed("ui_melee"):
+		melee()
 
 
 func shoot():
@@ -97,4 +101,16 @@ func shoot():
 	var bullet = BULLET.instance()
 	get_parent().add_child(bullet)
 	bullet.setup(poz, rot)
+	
+func melee():
+	var poz = position
+	var dist = 20
+	if !faceing_right:
+		dist = -dist
+	poz.x += dist
+	
+	var melee = MELEE.instance()
+	get_parent().add_child(melee)
+	melee.setup(poz)
+	print("Melee")
 	
