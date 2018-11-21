@@ -10,6 +10,7 @@
 position = Vector2( 383.576, 263.708 )
 z_index = 1
 _sections_unfolded = [ "Collision", "Z Index" ]
+MELEE = null
 
 [node name="Map" type="TileMap" parent="." index="1"]
 

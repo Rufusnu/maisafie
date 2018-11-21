@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://melee.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Textures/cucumber.png" type="Texture" id=4]
+[ext_resource path="res://Textures/cucumber.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -19,7 +18,7 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 BULLET = ExtResource( 2 )
-MELEE = ExtResource( 3 )
+MELEE = null
 
 [node name="hit_box" type="CollisionShape2D" parent="." index="0"]
 
@@ -29,6 +28,6 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="texture" type="Sprite" parent="." index="1"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 
