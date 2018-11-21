@@ -3,6 +3,7 @@ extends KinematicBody2D
 # Exports go here
 
 export (PackedScene) var BULLET
+export (PackedScene) var MELEE
 
 # Consts go here
 ## physics
@@ -57,33 +58,34 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
 		speed += ACCEL
 		faceing_right = true
-	elif speed > DECEL:
-		speed -= DECEL
-	elif !Input.is_action_pressed("ui_left"):
-		 speed = 0
 	
 	if Input.is_action_pressed("ui_left"):
 		speed -= ACCEL
 		faceing_right = false
-	elif speed < -DECEL:
-		speed += DECEL
-	elif !Input.is_action_pressed("ui_right"):
-		speed = 0
 		
-	if speed > MAX_MOVEMENT_SPEED:
-		speed = MAX_MOVEMENT_SPEED
-	elif speed < -MAX_MOVEMENT_SPEED:
-		speed = -MAX_MOVEMENT_SPEED
+	speed = min(speed, MAX_MOVEMENT_SPEED)
+	speed = max(speed, -MAX_MOVEMENT_SPEED)
 	
 	if on_floor and Input.is_action_just_pressed("ui_up"):
 		movement.y -= MAX_JUMP_SPEED
+	
+	if on_floor:
+		if !Input.is_action_pressed("ui_right") and !Input.is_action_pressed("ui_left"):
+			speed = lerp(speed, 0, 0.2)
+	else:
+		speed = lerp(speed, 0, 0.05)
 	
 	movement.x = speed
 	
 	move_and_slide(movement, UP)
 	
+	$texture.flip_h = faceing_right
+	
 	if Input.is_action_just_pressed("ui_shoot"):
 		shoot()
+	
+	if Input.is_action_just_pressed("ui_melee"):
+		melee()
 
 
 func shoot():
@@ -99,4 +101,16 @@ func shoot():
 	var bullet = BULLET.instance()
 	get_parent().add_child(bullet)
 	bullet.setup(poz, rot)
+	
+func melee():
+	var poz = position
+	var dist = 20
+	if !faceing_right:
+		dist = -dist
+	poz.x += dist
+	
+	var melee = MELEE.instance()
+	get_parent().add_child(melee)
+	melee.setup(poz)
+	print("Melee")
 	
