@@ -4,7 +4,8 @@ extends KinematicBody2D
 
 export (PackedScene) var BULLET
 export (PackedScene) var MELEE
-
+export (int) var CD 
+var timer = CD
 # Consts go here
 ## physics
 const UP = Vector2(-1, 0)
@@ -104,8 +105,8 @@ func shoot():
 	
 func melee():
 	var dist = 20
-	if !faceing_right:
-		dist = -dist
+	
+	
 	
 	var melee = MELEE.instance()
 	melee.setup(dist, faceing_right)

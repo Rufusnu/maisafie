@@ -5,22 +5,33 @@ var buttons_pressed = false
 # var a = 2
 # var b = "textvar"
 var knock = 400
+var pos
+var dist
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	pass
 
 func _physics_process(delta):
 	var face = get_parent().faceing_right
+	if face:
+		position.x = pos + dist
+	else:
+		position.x = pos - dist
 	$Sprite.flip_h=!face
 	
 
-func setup(dist, facing_right):
+func setup(dis, facing_right):
 	#user facing_right to determine if you need to flip the animation
+	pos = position.x
+	dist = dis
 	if !facing_right:
 		knock = -knock
-	position.x += dist
+	if facing_right:
+		position.x = pos + dist
+	else:
+		position.x = pos - dist
+	
+	$Sprite.flip_h=!facing_right
 	
 
 func _on_Timer_timeout():
