@@ -4,12 +4,12 @@ extends KinematicBody2D
 
 export (PackedScene) var BULLET
 export (PackedScene) var MELEE
-export (int) var CD 
-var timer = CD
+
+
 # Consts go here
 ## physics
 const UP = Vector2(-1, 0)
-
+const CD = 1
 const GRAVITY = 15
 const MAX_MOVEMENT_SPEED = 200
 const MAX_FALL_SPEED = 400
@@ -25,7 +25,7 @@ const MAX_HEALTH = 300
 
 var health
 var ammo
-
+var timer 
 
 var on_floor
 var on_wall
@@ -36,7 +36,7 @@ var movement = Vector2()
 var speed = 0
 
 func _ready():
-	pass
+	timer = CD
 
 func _physics_process(delta):
 	
@@ -55,6 +55,8 @@ func _physics_process(delta):
 		movement.y += GRAVITY
 	
 	
+	timer = min( timer + delta, 2)
+	print(timer)
 	
 	if Input.is_action_pressed("ui_right"):
 		speed += ACCEL
@@ -82,11 +84,13 @@ func _physics_process(delta):
 	
 	$texture.flip_h = faceing_right
 	
-	if Input.is_action_just_pressed("ui_shoot"):
+	if Input.is_action_just_pressed("ui_shoot") and timer > CD:
 		shoot()
+		timer=0
 	
-	if Input.is_action_just_pressed("ui_melee"):
+	if Input.is_action_just_pressed("ui_melee") and timer > CD:
 		melee()
+		timer=0
 
 
 func shoot():
