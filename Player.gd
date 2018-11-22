@@ -108,6 +108,7 @@ func melee():
 		dist = -dist
 	
 	var melee = MELEE.instance()
+	melee.setup(dist, faceing_right)
 	
 	add_child(melee)
 	

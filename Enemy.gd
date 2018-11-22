@@ -26,8 +26,6 @@ func _physics_process(delta):
 		die()
 	if to_follow != null and is_on_floor():
 		move(to_follow)
-	if movement.y < 10:
-		print(movement.y)
 	move_and_slide(movement, Vector2(0, -1))
 
 func move(body):
@@ -52,10 +50,8 @@ func _on_Area2D_body_exited(body):
 
 func take_damage(damage):
 	hp -= damage
-	print("Auch!")
 	
 func knock(mov):
-	print("knock")
 	movement += mov
 
 func die():
