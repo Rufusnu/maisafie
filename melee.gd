@@ -1,7 +1,6 @@
 extends Area2D
-var faceing_right = true
 export (int) var DAMAGE
-
+var buttons_pressed = false
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
@@ -13,19 +12,16 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("ui_right"):
-		faceing_right = true
+	var face = get_parent().faceing_right
+	$Sprite.flip_h=!face
 	
-	if Input.is_action_pressed("ui_left"):
-		faceing_right = false
-	$Sprite.flip_h=!faceing_right
 
 func setup(dist, facing_right):
 	#user facing_right to determine if you need to flip the animation
 	if !facing_right:
 		knock = -knock
 	position.x += dist
-	$Sprite.flip_h=!facing_right
+	
 
 func _on_Timer_timeout():
 	queue_free()

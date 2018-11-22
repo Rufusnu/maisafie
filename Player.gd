@@ -30,7 +30,7 @@ var on_floor
 var on_wall
 var on_ceiling
 
-var faceing_right = true
+export (bool) var faceing_right = true
 var movement = Vector2()
 var speed = 0
 
