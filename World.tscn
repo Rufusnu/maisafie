@@ -4,14 +4,13 @@
 [ext_resource path="res://tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
 position = Vector2( 353.648, 141.274 )
 z_index = 1
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
-faceing_right = true
 
 [node name="Map" type="TileMap" parent="." index="1"]
 
